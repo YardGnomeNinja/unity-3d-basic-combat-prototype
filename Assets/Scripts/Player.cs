@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Useful when not using a Rigidbody
     CharacterController characterController;
     public float speed = 5f;
-    public float jumpVelocity = 5f;
+    public float jumpVelocity = 8f;
     private float gravity = -9.81f;
     Vector3 playerVelocity;
 
@@ -21,10 +21,11 @@ public class Player : MonoBehaviour
     // Note: For resons I don't yet comprehend, moving the gravity calculations below movement causes undesireable effects for isGrounded. Hence they happen first.
     void Update()
     {
+        Debug.Log(characterController.isGrounded);
         // Calculate Gravity
         if(characterController.isGrounded) {
             // If the character is on the ground, continue to apply downward force to keep them there
-            playerVelocity.y = gravity * Time.deltaTime;
+            playerVelocity.y = -1;
 
             // Only allow the character to jump if they are on the ground
             if(Input.GetKeyDown(KeyCode.Space)) {
